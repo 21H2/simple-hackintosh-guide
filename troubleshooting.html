@@ -73,9 +73,10 @@
                     </div>
                     
                     <div class="content-main">
-                        <div id="overview" class="content-section-inner">
-                            <h2>Troubleshooting Overview</h2>
-                            <p>Even with careful preparation, you may encounter issues with your Hackintosh. This guide covers common problems and their solutions to help you diagnose and fix issues quickly.</p>
+                        <section id="overview" class="content-block">
+                            <h2>Overview</h2>
+                            <p>This guide covers common issues you might encounter while building and using your Hackintosh, along with their solutions.</p>
+                        </section>
                             
                             <div class="info-card" data-aos="fade-up">
                                 <div class="info-icon">
@@ -192,7 +193,74 @@
                         
                         <div id="graphics-issues" class="content-section-inner">
                             <h2>Graphics Issues</h2>
-                            <p>Graphics problems are common in Hackintosh builds and can manifest in various ways:</p>
+                            <p>Graphics problems are common in Hackintosh builds and can manifest in various ways. This comprehensive guide will help you identify and resolve common graphics-related issues.</p>
+                            
+                            <div class="issue-grid">
+                                <div class="issue-card" data-aos="fade-up">
+                                    <h3><i class="fas fa-desktop"></i> Black Screen Issues</h3>
+                                    <div class="issue-content">
+                                        <h4>Symptoms</h4>
+                                        <ul>
+                                            <li>Display remains black after Apple logo</li>
+                                            <li>No video output during installation</li>
+                                            <li>Screen goes black after login</li>
+                                        </ul>
+                                        
+                                        <h4>Common Causes</h4>
+                                        <ul>
+                                            <li>Incorrect <code>WhateverGreen</code> configuration</li>
+                                            <li>Missing framebuffer patches</li>
+                                            <li>Incorrect BIOS settings for primary display</li>
+                                            <li>Unsupported GPU configuration</li>
+                                        </ul>
+                                        
+                                        <h4>Solutions</h4>
+                                        <ol>
+                                            <li>Add <code>-wegnoegpu</code> boot argument to disable discrete GPU</li>
+                                            <li>Verify proper framebuffer patches in config.plist</li>
+                                            <li>Check GPU BIOS settings and PCIe configurations</li>
+                                            <li>Update WhateverGreen.kext to latest version</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="issue-card" data-aos="fade-up" data-aos-delay="100">
+                                    <h3><i class="fas fa-tv"></i> Display Resolution Issues</h3>
+                                    <div class="issue-content">
+                                        <h4>Symptoms</h4>
+                                        <ul>
+                                            <li>Wrong display resolution</li>
+                                            <li>Missing HiDPI options</li>
+                                            <li>Screen flickering or artifacts</li>
+                                        </ul>
+                                        
+                                        <h4>Common Causes</h4>
+                                        <ul>
+                                            <li>Incorrect EDID configuration</li>
+                                            <li>Missing display patches</li>
+                                            <li>Incorrect connector types in framebuffer</li>
+                                        </ul>
+                                        
+                                        <h4>Solutions</h4>
+                                        <ol>
+                                            <li>Generate custom EDID with SwitchResX</li>
+                                            <li>Apply proper framebuffer patches</li>
+                                            <li>Use Hackintool to fix connector types</li>
+                                            <li>Enable HiDPI with one-key-hidpi script</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-card warning" data-aos="fade-up">
+                                <div class="info-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Important Note</h4>
+                                    <p>Always backup your working EFI folder before making any graphics-related changes. Graphics issues can prevent system boot if not configured correctly.</p>
+                                </div>
+                            </div>
                             
                             <div class="tabbed-content" data-aos="fade-up">
                                 <div class="tab-buttons">
@@ -279,7 +347,85 @@ system_profiler SPDisplaysDataType</code></pre>
                         
                         <div id="audio-issues" class="content-section-inner">
                             <h2>Audio Issues</h2>
-                            <p>Audio problems are common in Hackintosh builds and usually require specific configuration:</p>
+                            <p>Audio problems are common in Hackintosh builds. This comprehensive guide will help you identify and resolve audio-related issues, from basic configuration to advanced troubleshooting.</p>
+                            
+                            <div class="issue-grid">
+                                <div class="issue-card" data-aos="fade-up">
+                                    <h3><i class="fas fa-volume-xmark"></i> No Audio Output</h3>
+                                    <div class="issue-content">
+                                        <h4>Symptoms</h4>
+                                        <ul>
+                                            <li>No sound from any output</li>
+                                            <li>Audio devices not showing in System Preferences</li>
+                                            <li>Sound menu showing no output devices</li>
+                                        </ul>
+                                        
+                                        <h4>Common Causes</h4>
+                                        <ul>
+                                            <li>Missing or incorrect audio layout-id</li>
+                                            <li>AppleALC.kext not loaded properly</li>
+                                            <li>Incompatible codec configuration</li>
+                                            <li>HDMI audio routing issues</li>
+                                        </ul>
+                                        
+                                        <h4>Solutions</h4>
+                                        <ol>
+                                            <li>Verify AppleALC.kext is in config.plist and loading</li>
+                                            <li>Try different layout-ids for your codec</li>
+                                            <li>Reset audio configuration with:
+                                                <pre><code>sudo rm /Library/Preferences/Audio/com.apple.audio.SystemSettings.plist
+sudo rm /Library/Preferences/Audio/com.apple.audio.deviceSettings.plist</code></pre>
+                                            </li>
+                                            <li>Use Hackintool to identify correct audio properties</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="issue-card" data-aos="fade-up" data-aos-delay="100">
+                                    <h3><i class="fas fa-volume-low"></i> Audio Quality Issues</h3>
+                                    <div class="issue-content">
+                                        <h4>Symptoms</h4>
+                                        <ul>
+                                            <li>Static or crackling sound</li>
+                                            <li>Audio distortion</li>
+                                            <li>Volume imbalance</li>
+                                            <li>Intermittent audio cutouts</li>
+                                        </ul>
+                                        
+                                        <h4>Common Causes</h4>
+                                        <ul>
+                                            <li>Power management issues</li>
+                                            <li>Incorrect buffer settings</li>
+                                            <li>IRQ conflicts</li>
+                                            <li>Wrong audio properties in config.plist</li>
+                                        </ul>
+                                        
+                                        <h4>Solutions</h4>
+                                        <ol>
+                                            <li>Add alcdelay=1000 boot argument</li>
+                                            <li>Use VoodooHDA for problematic codecs</li>
+                                            <li>Adjust audio buffer size in Audio MIDI Setup</li>
+                                            <li>Apply HPET fixes in config.plist</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-card tip" data-aos="fade-up">
+                                <div class="info-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Audio Debugging Tips</h4>
+                                    <p>When troubleshooting audio issues, follow these steps:</p>
+                                    <ol>
+                                        <li>Use <code>gfxutil</code> to verify audio controller location</li>
+                                        <li>Check codec information with <code>codeccommander</code></li>
+                                        <li>Test different layout-ids systematically</li>
+                                        <li>Keep detailed notes of working configurations</li>
+                                    </ol>
+                                </div>
+                            </div>
                             
                             <div class="accordion" data-aos="fade-up">
                                 <div class="accordion-item">
@@ -357,7 +503,97 @@ system_profiler SPAudioDataType</code></pre>
                         
                         <div id="network-issues" class="content-section-inner">
                             <h2>Network Issues</h2>
-                            <p>Network connectivity problems can affect your Hackintosh experience:</p>
+                            <p>Network connectivity problems are common in Hackintosh builds. This comprehensive guide covers both WiFi and Ethernet issues, along with detailed solutions for each problem.</p>
+                            
+                            <div class="issue-grid">
+                                <div class="issue-card" data-aos="fade-up">
+                                    <h3><i class="fas fa-wifi"></i> WiFi Issues</h3>
+                                    <div class="issue-content">
+                                        <h4>Symptoms</h4>
+                                        <ul>
+                                            <li>WiFi not showing in menu bar</li>
+                                            <li>Unable to connect to networks</li>
+                                            <li>Frequent disconnections</li>
+                                            <li>Slow or unstable connection</li>
+                                        </ul>
+                                        
+                                        <h4>Common Causes</h4>
+                                        <ul>
+                                            <li>Unsupported WiFi card</li>
+                                            <li>Missing or incorrect kexts</li>
+                                            <li>Wrong configuration in config.plist</li>
+                                            <li>Interference from other devices</li>
+                                        </ul>
+                                        
+                                        <h4>Solutions</h4>
+                                        <ol>
+                                            <li>Use a supported WiFi card (Broadcom BCM94360CS2 recommended)</li>
+                                            <li>Install required kexts:
+                                                <pre><code>AirportBrcmFixup.kext
+BrcmPatchRAM3.kext
+BrcmFirmwareData.kext
+BrcmBluetoothInjector.kext</code></pre>
+                                            </li>
+                                            <li>Check antenna connections</li>
+                                            <li>Update to latest kext versions</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="issue-card" data-aos="fade-up" data-aos-delay="100">
+                                    <h3><i class="fas fa-ethernet"></i> Ethernet Issues</h3>
+                                    <div class="issue-content">
+                                        <h4>Symptoms</h4>
+                                        <ul>
+                                            <li>No Ethernet connection</li>
+                                            <li>Connection drops randomly</li>
+                                            <li>Slow network speeds</li>
+                                            <li>System freeze when connecting</li>
+                                        </ul>
+                                        
+                                        <h4>Common Causes</h4>
+                                        <ul>
+                                            <li>Missing Ethernet kext</li>
+                                            <li>Wrong network interface name</li>
+                                            <li>BIOS settings conflicts</li>
+                                            <li>Hardware compatibility issues</li>
+                                        </ul>
+                                        
+                                        <h4>Solutions</h4>
+                                        <ol>
+                                            <li>Install correct kext for your Ethernet chip:
+                                                <ul>
+                                                    <li>Intel: IntelMausi.kext</li>
+                                                    <li>Realtek: RealtekRTL8111.kext</li>
+                                                    <li>Atheros: AtherosE2200Ethernet.kext</li>
+                                                </ul>
+                                            </li>
+                                            <li>Reset Network Settings:
+                                                <pre><code>sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
+sudo rm /Library/Preferences/SystemConfiguration/preferences.plist</code></pre>
+                                            </li>
+                                            <li>Check cable connections and try different ports</li>
+                                            <li>Verify BIOS network stack is enabled</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-card tip" data-aos="fade-up">
+                                <div class="info-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Network Debugging Tips</h4>
+                                    <p>When troubleshooting network issues:</p>
+                                    <ol>
+                                        <li>Use <code>kextstat | grep -E "Intel|Realtek|Atheros|Broadcom"</code> to verify kexts are loaded</li>
+                                        <li>Check System Information for PCI devices</li>
+                                        <li>Monitor console logs for network-related errors</li>
+                                        <li>Keep a backup of working network configuration</li>
+                                    </ol>
+                                </div>
+                            </div>
                             
                             <div class="tabbed-content" data-aos="fade-up">
                                 <div class="tab-buttons">

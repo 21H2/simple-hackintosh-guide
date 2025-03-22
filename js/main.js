@@ -20,6 +20,9 @@ function initThemeToggle() {
         document.body.classList.add('dark-mode');
     }
     
+    // Update theme toggle icon based on current theme
+    updateThemeToggleIcon();
+    
     // Toggle theme when button is clicked
     themeToggle.addEventListener('click', function() {
         document.body.classList.toggle('dark-mode');
@@ -27,17 +30,61 @@ function initThemeToggle() {
         // Save preference to localStorage
         const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
         localStorage.setItem('theme', theme);
+        
+        // Update theme toggle icon
+        updateThemeToggleIcon();
+    });
+    
+    // Listen for system preference changes
+    prefersDarkScheme.addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+            if (e.matches) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+            updateThemeToggleIcon();
+        }
     });
 }
+
+// Helper function to update theme toggle icon
+function updateThemeToggleIcon() {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    const moonIcon = document.querySelector('.theme-toggle .fa-moon');
+    const sunIcon = document.querySelector('.theme-toggle .fa-sun');
+    
+    if (isDarkMode) {
+        moonIcon.style.opacity = '0';
+        moonIcon.style.transform = 'rotate(180deg)';
+        sunIcon.style.opacity = '1';
+        sunIcon.style.transform = 'rotate(0)';
+    } else {
+        moonIcon.style.opacity = '1';
+        moonIcon.style.transform = 'rotate(0)';
+        sunIcon.style.opacity = '0';
+        sunIcon.style.transform = 'rotate(-180deg)';
+    }
+}
+// The closing brace for initThemeToggle function
+// No closing brace needed here since it was an extra one
 
 // Mobile Menu Functionality
 function initMobileMenu() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
     
     mobileMenuBtn.addEventListener('click', function() {
         mobileMenuBtn.classList.toggle('active');
         navLinks.classList.toggle('active');
+        
+        // Prevent body scrolling when menu is open
+        if (navLinks.classList.contains('active')) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+        }
     });
     
     // Close menu when clicking on a link
@@ -46,7 +93,28 @@ function initMobileMenu() {
         link.addEventListener('click', function() {
             mobileMenuBtn.classList.remove('active');
             navLinks.classList.remove('active');
+            body.style.overflow = '';
         });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (navLinks.classList.contains('active') && 
+            !navLinks.contains(e.target) && 
+            !mobileMenuBtn.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.style.overflow = '';
+        }
+    });
+    
+    // Close menu on window resize (if switching to desktop view)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.style.overflow = '';
+        }
     });
 }
 
@@ -56,6 +124,28 @@ function initCustomCursor() {
     const cursorFollower = document.querySelector('.cursor-follower');
     
     if (!cursor || !cursorFollower) return;
+    
+    // Check if device supports touch or has small screen (likely mobile)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isSmallScreen = window.innerWidth < 768;
+    
+    // Disable custom cursor on touch devices or small screens
+    if (isTouchDevice || isSmallScreen) {
+        cursor.style.display = 'none';
+        cursorFollower.style.display = 'none';
+        document.body.style.cursor = 'auto';
+        return;
+    }
+    
+    // Initialize cursor position to prevent jumps
+    cursor.style.opacity = '0';
+    cursorFollower.style.opacity = '0';
+    
+    // Show cursor after a short delay
+    setTimeout(() => {
+        cursor.style.opacity = '0.7';
+        cursorFollower.style.opacity = '0.3';
+    }, 500);
     
     document.addEventListener('mousemove', function(e) {
         cursor.style.left = e.clientX + 'px';
@@ -82,21 +172,40 @@ function initCustomCursor() {
         });
     });
     
+    // Hide cursor when leaving the window
+    document.addEventListener('mouseout', function(e) {
+        if (e.relatedTarget === null) {
+            cursor.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
+        }
+    });
+    
+    document.addEventListener('mouseover', function() {
+        cursor.style.opacity = '0.7';
+        cursorFollower.style.opacity = '0.3';
+    });
+    
     // Hide default cursor
     document.body.style.cursor = 'none';
     
-    // Handle cursor on touch devices
-    if ('ontouchstart' in window) {
-        cursor.style.display = 'none';
-        cursorFollower.style.display = 'none';
-        document.body.style.cursor = 'auto';
-    }
+    // Update on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth < 768) {
+            cursor.style.display = 'none';
+            cursorFollower.style.display = 'none';
+            document.body.style.cursor = 'auto';
+        } else {
+            cursor.style.display = 'block';
+            cursorFollower.style.display = 'block';
+            document.body.style.cursor = 'none';
+        }
+    });
 }
 
 // Animations with Intersection Observer
 function initAnimations() {
     // Add AOS-like functionality with Intersection Observer
-    const animatedElements = document.querySelectorAll('[data-aos]');
+    const animatedElements = document.querySelectorAll('[data-aos], .animate-text, .animate-text-delay, .animate-text-delay-2, .hero-image img, .content-section-inner, .feature-item, .info-card, .note-card');
     
     if (animatedElements.length === 0) return;
     
@@ -155,9 +264,22 @@ function initAnimations() {
     document.head.appendChild(style);
 }
 
-// Smooth Scrolling for Anchor Links
+// Smooth Scrolling and Active State for Sidebar Links
 function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+    const sections = {};
+    
+    // Build sections object for active state tracking
+    sidebarLinks.forEach(link => {
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            sections[targetId] = targetElement.offsetTop;
+        }
+    });
+    
+    // Handle smooth scrolling
+    sidebarLinks.forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             
@@ -165,6 +287,11 @@ function initSmoothScroll() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                // Remove active class from all links
+                sidebarLinks.forEach(link => link.classList.remove('active'));
+                // Add active class to clicked link
+                this.classList.add('active');
+                
                 // Offset for fixed header
                 const headerOffset = 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
@@ -176,6 +303,28 @@ function initSmoothScroll() {
                 });
             }
         });
+    });
+    
+    // Update active state on scroll
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY + 100; // Offset for better UX
+        
+        for (let id in sections) {
+            const section = document.querySelector(id);
+            if (section) {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    sidebarLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            }
+        }
     });
 }
 
