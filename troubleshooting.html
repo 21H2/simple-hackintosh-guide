@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting - Modern Hackintosh Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 5L30 10V30L20 35L10 30V10L20 5Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20 15L25 17.5V25L20 27.5L15 25V17.5L20 15Z" fill="currentColor"/>
+                    </svg>
+                    <span>HackGuide</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="installation.html">Installation</a>
+                    <a href="post-install.html">Post-Install</a>
+                    <a href="troubleshooting.html" class="active">Troubleshooting</a>
+                </div>
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="animate-text">Trouble<span class="gradient-text">shooting</span></h1>
+                <p class="lead animate-text-delay">Solutions for common Hackintosh problems and issues</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-sidebar">
+                        <div class="sidebar-nav">
+                            <h4>On This Page</h4>
+                            <ul>
+                                <li><a href="#overview">Overview</a></li>
+                                <li><a href="#boot-issues">Boot Issues</a></li>
+                                <li><a href="#graphics-issues">Graphics Issues</a></li>
+                                <li><a href="#audio-issues">Audio Issues</a></li>
+                                <li><a href="#network-issues">Network Issues</a></li>
+                                <li><a href="#sleep-issues">Sleep & Wake Issues</a></li>
+                                <li><a href="#usb-issues">USB Issues</a></li>
+                                <li><a href="#update-issues">Update Issues</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-main">
+                        <div id="overview" class="content-section-inner">
+                            <h2>Troubleshooting Overview</h2>
+                            <p>Even with careful preparation, you may encounter issues with your Hackintosh. This guide covers common problems and their solutions to help you diagnose and fix issues quickly.</p>
+                            
+                            <div class="info-card" data-aos="fade-up">
+                                <div class="info-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Troubleshooting Philosophy</h4>
+                                    <p>When troubleshooting a Hackintosh, it's important to make one change at a time and test thoroughly before moving on. This methodical approach helps identify exactly what fixes the issue and prevents introducing new problems.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="boot-issues" class="content-section-inner">
+                            <h2>Boot Issues</h2>
+                            <p>Boot problems are among the most common issues when setting up a Hackintosh. Here are solutions for frequent boot-related problems:</p>
+                            
+                            <div class="accordion" data-aos="fade-up">
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>Stuck at Apple Logo</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If your system gets stuck at the Apple logo during boot:</p>
+                                        <ol>
+                                            <li>Boot with <code>-v</code> verbose mode to see where it's hanging</li>
+                                            <li>Check if you have the correct <code>SMBIOS</code> for your hardware</li>
+                                            <li>Verify that you're using the right kexts for your hardware</li>
+                                            <li>Try disabling certain kexts to identify which one might be causing the issue</li>
+                                            <li>Ensure your config.plist has the correct ACPI patches for your motherboard</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Add these boot arguments to troubleshoot
+-v debug=0x100 keepsyms=1</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>Kernel Panic During Boot</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If you experience a kernel panic (system crash) during boot:</p>
+                                        <ol>
+                                            <li>Note the exact error message from verbose mode</li>
+                                            <li>Check for kext conflicts or outdated kexts</li>
+                                            <li>Verify that your ACPI patches are correct for your hardware</li>
+                                            <li>Try booting with <code>-x</code> (safe mode) to disable third-party kexts</li>
+                                            <li>Ensure your OpenCore version is compatible with your macOS version</li>
+                                        </ol>
+                                        
+                                        <div class="warning-card">
+                                            <div class="warning-icon">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </div>
+                                            <div class="warning-content">
+                                                <h4>Common Kernel Panic Causes</h4>
+                                                <ul>
+                                                    <li>Incorrect <code>SMBIOS</code> selection</li>
+                                                    <li>Missing or incorrect <code>EC</code> ACPI patch</li>
+                                                    <li>Incompatible kexts</li>
+                                                    <li>Incorrect memory configuration in BIOS</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>OpenCore Not Showing in Boot Menu</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If your system doesn't show OpenCore in the boot menu:</p>
+                                        <ol>
+                                            <li>Verify that your EFI partition is correctly formatted (FAT32)</li>
+                                            <li>Check that the EFI folder structure is correct</li>
+                                            <li>Ensure your motherboard's BIOS is set to UEFI boot mode, not Legacy</li>
+                                            <li>Try a different USB port, preferably USB 2.0</li>
+                                            <li>Reset NVRAM if you've previously installed other bootloaders</li>
+                                        </ol>
+                                        
+                                        <div class="tip-card">
+                                            <div class="tip-icon">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                            <div class="tip-content">
+                                                <h4>EFI Structure Tip</h4>
+                                                <p>The correct EFI folder structure should be:</p>
+                                                <pre>EFI
+├── BOOT
+│   └── BOOTx64.efi
+└── OC
+    ├── ACPI
+    ├── Drivers
+    ├── Kexts
+    ├── Resources
+    ├── Tools
+    ├── OpenCore.efi
+    └── config.plist</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="graphics-issues" class="content-section-inner">
+                            <h2>Graphics Issues</h2>
+                            <p>Graphics problems are common in Hackintosh builds and can manifest in various ways:</p>
+                            
+                            <div class="tabbed-content" data-aos="fade-up">
+                                <div class="tab-buttons">
+                                    <button class="tab-button active" data-tab="black-screen">Black Screen</button>
+                                    <button class="tab-button" data-tab="glitches">Visual Glitches</button>
+                                    <button class="tab-button" data-tab="acceleration">No Acceleration</button>
+                                </div>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="black-screen">
+                                        <h3>Black Screen After Boot</h3>
+                                        <p>If your screen goes black after the Apple logo:</p>
+                                        <ol>
+                                            <li>Verify that your GPU is compatible with your macOS version</li>
+                                            <li>Add <code>-igfxvesa</code> boot argument to force VESA mode</li>
+                                            <li>For AMD GPUs, ensure you have the correct <code>WhateverGreen</code> kext</li>
+                                            <li>For Intel iGPUs, check that you have the correct <code>framebuffer-patch</code> in your config.plist</li>
+                                            <li>Try connecting to a different display output (HDMI/DisplayPort/DVI)</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># For Intel iGPU issues, try these boot args
+-igfxvesa
+igfxonln=1
+igfxfw=2</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="glitches">
+                                        <h3>Visual Glitches and Artifacts</h3>
+                                        <p>If you're experiencing graphical glitches or artifacts:</p>
+                                        <ol>
+                                            <li>Update <code>WhateverGreen.kext</code> to the latest version</li>
+                                            <li>For Intel iGPUs, try different <code>AAPL,ig-platform-id</code> values</li>
+                                            <li>For AMD GPUs, add <code>agdpmod=pikera</code> for Navi GPUs</li>
+                                            <li>Disable any overclocking on your GPU</li>
+                                            <li>Try different SMBIOS models that better match your GPU configuration</li>
+                                        </ol>
+                                        
+                                        <div class="note-card">
+                                            <div class="note-icon">
+                                                <i class="fas fa-info-circle"></i>
+                                            </div>
+                                            <div class="note-content">
+                                                <h4>Common Platform IDs</h4>
+                                                <p>For Intel UHD 630 (Coffee Lake):</p>
+                                                <ul>
+                                                    <li><code>0x3E9B0007</code> - Desktop with no outputs</li>
+                                                    <li><code>0x3E920003</code> - Desktop with outputs</li>
+                                                    <li><code>0x3E910003</code> - Laptop</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="acceleration">
+                                        <h3>No Graphics Acceleration</h3>
+                                        <p>If your system is running slowly with no graphics acceleration:</p>
+                                        <ol>
+                                            <li>Verify in System Information that your GPU is properly recognized</li>
+                                            <li>Ensure <code>WhateverGreen.kext</code> is loaded</li>
+                                            <li>Check that your GPU is supported in your macOS version</li>
+                                            <li>For Intel iGPUs, verify you have the correct <code>AAPL,ig-platform-id</code></li>
+                                            <li>For AMD GPUs, ensure you're not using any conflicting kexts</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Check if your GPU is properly recognized
+kextstat | grep -E "WhateverGreen|Lilu"
+
+# For Intel iGPUs, check framebuffer info
+system_profiler SPDisplaysDataType</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="audio-issues" class="content-section-inner">
+                            <h2>Audio Issues</h2>
+                            <p>Audio problems are common in Hackintosh builds and usually require specific configuration:</p>
+                            
+                            <div class="accordion" data-aos="fade-up">
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>No Audio Output</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If you have no audio output after installation:</p>
+                                        <ol>
+                                            <li>Verify that <code>AppleALC.kext</code> is installed and loaded</li>
+                                            <li>Check that you have the correct <code>layout-id</code> for your audio codec</li>
+                                            <li>Make sure your output device is selected in System Preferences</li>
+                                            <li>Try different audio ports (front/rear)</li>
+                                            <li>Reset NVRAM if you've recently updated kexts</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Find your audio codec
+kextstat | grep -E "AppleHDA|AppleALC"
+
+# Check loaded audio devices
+system_profiler SPAudioDataType</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>Audio Distortion or Static</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If you're experiencing audio distortion or static:</p>
+                                        <ol>
+                                            <li>Try a different <code>layout-id</code> value</li>
+                                            <li>Update <code>AppleALC.kext</code> to the latest version</li>
+                                            <li>Check for interference from other devices</li>
+                                            <li>Try disabling any audio enhancements in macOS</li>
+                                            <li>Consider using <code>VoodooHDA</code> as an alternative solution</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>Microphone Not Working</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If your microphone isn't working:</p>
+                                        <ol>
+                                            <li>Check if your <code>layout-id</code> supports microphone input</li>
+                                            <li>Verify microphone permissions in System Preferences</li>
+                                            <li>Try different microphone ports</li>
+                                            <li>Some codecs have limited microphone support in macOS</li>
+                                        </ol>
+                                        
+                                        <div class="tip-card">
+                                            <div class="tip-icon">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                            <div class="tip-content">
+                                                <h4>USB Audio Alternative</h4>
+                                                <p>If you can't get your built-in microphone working, consider using a USB audio interface or headset, which typically works without additional configuration in macOS.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="network-issues" class="content-section-inner">
+                            <h2>Network Issues</h2>
+                            <p>Network connectivity problems can affect your Hackintosh experience:</p>
+                            
+                            <div class="tabbed-content" data-aos="fade-up">
+                                <div class="tab-buttons">
+                                    <button class="tab-button active" data-tab="ethernet">Ethernet</button>
+                                    <button class="tab-button" data-tab="wifi">Wi-Fi</button>
+                                    <button class="tab-button" data-tab="bluetooth">Bluetooth</button>
+                                </div>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="ethernet">
+                                        <h3>Ethernet Issues</h3>
+                                        <p>If your Ethernet connection isn't working:</p>
+                                        <ol>
+                                            <li>Verify you have the correct kext for your Ethernet controller</li>
+                                            <li>Common kexts include <code>IntelMausi.kext</code>, <code>RealtekRTL8111.kext</code>, etc.</li>
+                                            <li>Check that the kext is properly loaded</li>
+                                            <li>Try resetting your network settings in macOS</li>
+                                            <li>Ensure your cable is properly connected</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Check loaded network kexts
+kextstat | grep -E "Intel|Realtek|Atheros|Broadcom"</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="wifi">
+                                        <h3>Wi-Fi Issues</h3>
+                                        <p>Wi-Fi can be challenging on Hackintosh systems:</p>
+                                        <ol>
+                                            <li>Most Intel Wi-Fi cards are not natively supported</li>
+                                            <li>Broadcom cards with the right chipset work best (BCM94360CS2, BCM94352Z)</li>
+                                            <li>For supported Broadcom cards, use <code>AirportBrcmFixup.kext</code></li>
+                                            <li>For Intel cards, try <code>itlwm.kext</code> with <code>HeliPort</code> app</li>
+                                            <li>Consider using a USB Wi-Fi adapter or replacing your card with a compatible one</li>
+                                        </ol>
+                                        
+                                        <div class="note-card">
+                                            <div class="note-icon">
+                                                <i class="fas fa-info-circle"></i>
+                                            </div>
+                                            <div class="note-content">
+                                                <h4>Compatible Wi-Fi Cards</h4>
+                                                <p>The most compatible Wi-Fi cards for Hackintosh are:</p>
+                                                <ul>
+                                                    <li>BCM94360CS2 (Used in MacBook Air)</li>
+                                                    <li>BCM94360CD (Used in iMac)</li>
+                                                    <li>BCM94352Z (With proper kexts)</li>
+                                                    <li>BCM943602CS (Used in Mac Mini)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="bluetooth">
+                                        <h3>Bluetooth Issues</h3>
+                                        <p>Bluetooth can be challenging on Hackintosh systems:</p>
+                                        <ol>
+                                            <li>Most Bluetooth issues are related to USB mapping</li>
+                                            <li>Apple-branded Wi-Fi/BT combo cards work best</li>
+                                            <li>For Broadcom cards, ensure <code>BrcmBluetoothInjector.kext</code> is loaded</li>
+                                            <li>Check that the internal USB header is properly mapped</li>
+                                            <li>Some Bluetooth features like Handoff may require additional configuration</li>
+                                        </ol>
+                                        
+                                        <div class="tip-card">
+                                            <div class="tip-icon">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                            <div class="tip-content">
+                                                <h4>Bluetooth Troubleshooting</h4>
+                                                <p>If your Bluetooth device connects but frequently disconnects, try these steps:</p>
+                                                <ol>
+                                                    <li>Reset Bluetooth module: <code>sudo pkill bluetoothd</code></li>
+                                                    <li>Delete Bluetooth preferences: <code>~/Library/Preferences/com.apple.Bluetooth.plist</code></li>
+                                                    <li>Ensure your USB mapping includes the internal Bluetooth controller</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="sleep-issues" class="content-section-inner">
+                            <h2>Sleep & Wake Issues</h2>
+                            <p>Sleep and wake functionality can be challenging to get working properly on a Hackintosh:</p>
+                            
+                            <div class="accordion" data-aos="fade-up">
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>System Won't Sleep</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If your system won't enter sleep mode:</p>
+                                        <ol>
+                                            <li>Check what's preventing sleep with: <code>pmset -g assertions</code></li>
+                                            <li>Ensure you have proper ACPI patches (SSDT-GPRW, SSDT-UPRW)</li>
+                                            <li>Disable wake on network access in Energy Saver preferences</li>
+                                            <li>Check USB devices that might be preventing sleep</li>
+                                            <li>Try different <code>hibernatemode</code> settings</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Set hibernatemode to 0 (recommended for Hackintosh)
+sudo pmset -a hibernatemode 0 standby 0 autopoweroff 0</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>Wake Issues</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If your system has problems waking from sleep:</p>
+                                        <ol>
+                                            <li>Check for wake reasons with: <code>pmset -g log | grep -i "Wake reason"</code></li>
+                                            <li>Disable Power Nap in Energy Saver preferences</li>
+                                            <li>Try different framebuffer patches for your GPU</li>
+                                            <li>Ensure your NVRAM is working properly</li>
+                                            <li>Check for USB devices causing wake issues</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>Black Screen After Wake</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>If your screen remains black after waking from sleep:</p>
+                                        <ol>
+                                            <li>Try different <code>AAPL,ig-platform-id</code> values for Intel GPUs</li>
+                                            <li>Add <code>igfxonln=1</code> boot argument</li>
+                                            <li>Check for proper framebuffer patches</li>
+                                            <li>Try connecting to a different display output</li>
+                                            <li>Update <code>WhateverGreen.kext</code> to the latest version</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="usb-issues" class="content-section-inner">
+                            <h2>USB Issues</h2>
+                            <p>USB problems are common due to macOS port limits and require proper mapping:</p>
+                            
+                            <div class="tabbed-content" data-aos="fade-up">
+                                <div class="tab-buttons">
+                                    <button class="tab-button active" data-tab="port-limit">Port Limit</button>
+                                    <button class="tab-button" data-tab="usb-mapping">USB Mapping</button>
+                                    <button class="tab-button" data-tab="specific-devices">Specific Devices</button>
+                                </div>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="port-limit">
+                                        <h3>USB Port Limit Issues</h3>
+                                        <p>macOS has a 15-port limit that can cause problems with complex USB setups:</p>
+                                        <ol>
+                                            <li>Use <code>USBInjectAll.kext</code> temporarily during setup</li>
+                                            <li>Apply port limit patches in your config.plist</li>
+                                            <li>Create a proper USB map to stay within the 15-port limit</li>
+                                            <li>Each physical port can use up to 2 ports (one for USB 2.0, one for USB 3.0)</li>
+                                        </ol>
+                                        
+                                        <div class="warning-card">
+                                            <div class="warning-icon">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </div>
+                                            <div class="warning-content">
+                                                <h4>Port Limit Warning</h4>
+                                                <p>Port limit patches are temporary solutions and may break with macOS updates. Always create a proper USB map for long-term stability.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="usb-mapping">
+                                        <h3>USB Mapping</h3>
+                                        <p>Creating a USB map is essential for proper USB functionality:</p>
+                                        <ol>
+                                            <li>Use tools like <code>USBMap</code> or <code>Hackintool</code> to identify ports</li>
+                                            <li>Test each physical port with both USB 2.0 and 3.0 devices</li>
+                                            <li>Create a custom <code>USBPorts.kext</code> or <code>SSDT-USB-Map.aml</code></li>
+                                            <li>Remove <code>USBInjectAll.kext</code> after mapping</li>
+                                            <li>Prioritize essential ports if you exceed the 15-port limit</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Install USBMap tool
+git clone https://github.com/corpnewt/USBMap
+cd USBMap
+./USBMap.command</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="specific-devices">
+                                        <h3>Specific USB

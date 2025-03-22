@@ -1,0 +1,47 @@
+<svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- MacBook Body -->
+  <rect x="100" y="50" width="300" height="200" rx="10" fill="#f0f0f0"/>
+  <rect x="105" y="55" width="290" height="190" rx="8" fill="#121212"/>
+  
+  <!-- Screen -->
+  <rect x="120" y="70" width="260" height="160" rx="4" fill="#f5f7fa"/>
+  
+  <!-- macOS Desktop -->
+  <rect x="120" y="70" width="260" height="20" rx="4" fill="rgba(0,0,0,0.1)"/>
+  <circle cx="130" cy="80" r="5" fill="#ff3860"/>
+  <circle cx="145" cy="80" r="5" fill="#ffdd57"/>
+  <circle cx="160" cy="80" r="5" fill="#00c16e"/>
+  
+  <!-- Desktop Background -->
+  <rect x="120" y="90" width="260" height="140" fill="#0071e3" opacity="0.1"/>
+  
+  <!-- Hackintosh Elements on Screen -->
+  <rect x="135" y="105" width="100" height="60" rx="4" fill="white" stroke="#e1e4e8" stroke-width="1"/>
+  <rect x="145" y="115" width="80" height="10" rx="2" fill="#0071e3"/>
+  <rect x="145" y="130" width="60" height="5" rx="2" fill="#6c5ce7"/>
+  <rect x="145" y="140" width="70" height="5" rx="2" fill="#6c5ce7"/>
+  <rect x="145" y="150" width="50" height="5" rx="2" fill="#6c5ce7"/>
+  
+  <rect x="245" y="105" width="120" height="90" rx="4" fill="white" stroke="#e1e4e8" stroke-width="1"/>
+  <circle cx="305" cy="130" r="20" stroke="#0071e3" stroke-width="2" fill="none"/>
+  <path d="M295 120L315 140M315 120L295 140" stroke="#0071e3" stroke-width="2"/>
+  <rect x="255" y="165" width="100" height="20" rx="4" fill="#f5f7fa"/>
+  <rect x="265" y="172" width="80" height="6" rx="2" fill="#0071e3"/>
+  
+  <!-- MacBook Base -->
+  <path d="M80 250H420L440 280H60L80 250Z" fill="#f0f0f0"/>
+  <rect x="240" y="260" width="20" height="5" rx="2.5" fill="#e1e4e8"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="50" cy="100" r="20" fill="#0071e3" opacity="0.1"/>
+  <circle cx="450" cy="200" r="25" fill="#6c5ce7" opacity="0.1"/>
+  <circle cx="50" cy="250" r="15" fill="#00c16e" opacity="0.1"/>
+  <circle cx="450" cy="80" r="18" fill="#ff3860" opacity="0.1"/>
+  
+  <!-- Code Symbols -->
+  <path d="M40 150L25 165L40 180" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M60 150L75 165L60 180" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <path d="M440 150L425 165L440 180" stroke="#6c5ce7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M460 150L475 165L460 180" stroke="#6c5ce7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

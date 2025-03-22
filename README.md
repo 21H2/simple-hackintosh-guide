@@ -1,4 +1,4 @@
-# Modern Hackintosh Guide Website
+# simple-hackintosh-guide
 
 A beautiful, modern website for Hackintosh enthusiasts based on the Dortania OpenCore Install Guide. This website features a clean bento design, modern typography, interactive elements, and smooth animations to make the Hackintosh installation process more accessible and visually appealing.
 

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation Guide - Modern Hackintosh Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 5L30 10V30L20 35L10 30V10L20 5Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20 15L25 17.5V25L20 27.5L15 25V17.5L20 15Z" fill="currentColor"/>
+                    </svg>
+                    <span>HackGuide</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="installation.html" class="active">Installation</a>
+                    <a href="post-install.html">Post-Install</a>
+                    <a href="troubleshooting.html">Troubleshooting</a>
+                </div>
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="animate-text">Installation <span class="gradient-text">Guide</span></h1>
+                <p class="lead animate-text-delay">Step-by-step instructions to install macOS on your PC hardware</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-sidebar">
+                        <div class="sidebar-nav">
+                            <h4>On This Page</h4>
+                            <ul>
+                                <li><a href="#overview">Overview</a></li>
+                                <li><a href="#prerequisites">Prerequisites</a></li>
+                                <li><a href="#create-installer">Creating the Installer</a></li>
+                                <li><a href="#opencore-config">OpenCore Configuration</a></li>
+                                <li><a href="#bios-settings">BIOS Settings</a></li>
+                                <li><a href="#installation-process">Installation Process</a></li>
+                                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-main">
+                        <div id="overview" class="content-section-inner">
+                            <h2>Installation Overview</h2>
+                            <p>Installing macOS on non-Apple hardware involves several key steps. This guide will walk you through the entire process, from creating your installation media to booting into your new Hackintosh for the first time.</p>
+                            
+                            <div class="process-timeline" data-aos="fade-up">
+                                <div class="timeline-item">
+                                    <div class="timeline-number">1</div>
+                                    <div class="timeline-content">
+                                        <h4>Prepare Installation Media</h4>
+                                        <p>Create a bootable USB drive with macOS and OpenCore</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-number">2</div>
+                                    <div class="timeline-content">
+                                        <h4>Configure OpenCore</h4>
+                                        <p>Set up the config.plist file for your specific hardware</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-number">3</div>
+                                    <div class="timeline-content">
+                                        <h4>Configure BIOS/UEFI</h4>
+                                        <p>Adjust your motherboard settings for compatibility</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-number">4</div>
+                                    <div class="timeline-content">
+                                        <h4>Install macOS</h4>
+                                        <p>Boot from the USB and install macOS on your drive</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-number">5</div>
+                                    <div class="timeline-content">
+                                        <h4>Post-Installation</h4>
+                                        <p>Fine-tune your system for optimal performance</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="prerequisites" class="content-section-inner">
+                            <h2>Prerequisites</h2>
+                            <p>Before starting the installation process, make sure you have the following:</p>
+                            
+                            <div class="checklist" data-aos="fade-up">
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Compatible Hardware</h4>
+                                        <p>Ensure your hardware is compatible with macOS. Refer to our <a href="hardware.html">Hardware Guide</a> for details.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>USB Drive (16GB+)</h4>
+                                        <p>A USB flash drive with at least 16GB of storage for the installer.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Access to macOS</h4>
+                                        <p>You'll need a Mac or existing Hackintosh to create the installation media.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Backup Your Data</h4>
+                                        <p>Always back up important data before partitioning drives or installing a new OS.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Basic Knowledge</h4>
+                                        <p>Familiarity with BIOS settings, partitioning, and basic terminal commands.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="create-installer" class="content-section-inner">
+                            <h2>Creating the Installation Media</h2>
+                            <p>The first step is to create a bootable USB drive with macOS and OpenCore.</p>
+                            
+                            <div class="tabbed-content" data-aos="fade-up">
+                                <div class="tab-buttons">
+                                    <button class="tab-button active" data-tab="download-macos">Download macOS</button>
+                                    <button class="tab-button" data-tab="format-usb">Format USB</button>
+                                    <button class="tab-button" data-tab="install-opencore">Install OpenCore</button>
+                                </div>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="download-macos">
+                                        <h3>Downloading macOS</h3>
+                                        <p>You can download macOS from the App Store or using a command-line tool.</p>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Download macOS using gibMacOS
+git clone https://github.com/corpnewt/gibMacOS
+cd gibMacOS
+./gibMacOS.command</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <p>Alternatively, you can download macOS from the App Store:</p>
+                                        <ol>
+                                            <li>Open the App Store on your Mac</li>
+                                            <li>Search for "macOS" (e.g., "macOS Sonoma")</li>
+                                            <li>Click "Get" or "Download"</li>
+                                            <li>The installer will download to your Applications folder</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="format-usb">
+                                        <h3>Formatting the USB Drive</h3>
+                                        <p>Prepare your USB drive with the correct format for the installer.</p>
+                                        
+                                        <ol>
+                                            <li>Connect your USB drive to your Mac</li>
+                                            <li>Open Disk Utility (Applications → Utilities → Disk Utility)</li>
+                                            <li>Select your USB drive from the sidebar</li>
+                                            <li>Click "Erase" and use these settings:
+                                                <ul>
+                                                    <li>Name: USB</li>
+                                                    <li>Format: Mac OS Extended (Journaled)</li>
+                                                    <li>Scheme: GUID Partition Map</li>
+                                                </ul>
+                                            </li>
+                                            <li>Click "Erase" to format the drive</li>
+                                        </ol>
+                                        
+                                        <div class="note-card">
+                                            <div class="note-icon">
+                                                <i class="fas fa-info-circle"></i>
+                                            </div>
+                                            <div class="note-content">
+                                                <h4>Important Note</h4>
+                                                <p>Make sure to back up any important data on the USB drive before formatting, as this process will erase all data on the drive.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="install-opencore">
+                                        <h3>Installing OpenCore</h3>
+                                        <p>Set up OpenCore on your USB drive.</p>
+                                        
+                                        <ol>
+                                            <li>Download the latest version of OpenCore from the <a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">official repository</a></li>
+                                            <li>Extract the downloaded file</li>
+                                            <li>Navigate to the OpenCore directory and locate the EFI folder</li>
+                                            <li>Copy the EFI folder to the root of your USB drive</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code># Create the installer using createinstallmedia
+sudo /Applications/Install\ macOS\ Sonoma.app/Contents/Resources/createinstallmedia --volume /Volumes/USB</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <p>This process may take 20-30 minutes depending on your USB drive speed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="opencore-config" class="content-section-inner">
+                            <h2>OpenCore Configuration</h2>
+                            <p>Configuring OpenCore is the most critical part of the Hackintosh installation process. You'll need to create a config.plist file tailored to your specific hardware.</p>
+                            
+                            <div class="accordion" data-aos="fade-up">
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <h4>Basic Structure</h4>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="accordion-content">
+                                        <p>The config.plist file is organized into several sections:</p>
+                                        <ul>
+                                            <li><strong>ACPI:</strong> ACPI patches and SSDTs</li>
+                                            <li><strong>Booter:</strong> Boot-related patches</li>
+                                            <li><strong>DeviceProperties:</strong> Device-specific properties</li>
+                                            <li><strong>Kernel:</strong> Kernel patches and kexts</li>
+                                            <li><strong>Misc:</strong> Miscellaneous settings</li>

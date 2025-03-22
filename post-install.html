@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Installation - Modern Hackintosh Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 5L30 10V30L20 35L10 30V10L20 5Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20 15L25 17.5V25L20 27.5L15 25V17.5L20 15Z" fill="currentColor"/>
+                    </svg>
+                    <span>HackGuide</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="installation.html">Installation</a>
+                    <a href="post-install.html" class="active">Post-Install</a>
+                    <a href="troubleshooting.html">Troubleshooting</a>
+                </div>
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="animate-text">Post-<span class="gradient-text">Installation</span></h1>
+                <p class="lead animate-text-delay">Fine-tune your Hackintosh for optimal performance and stability</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-sidebar">
+                        <div class="sidebar-nav">
+                            <h4>On This Page</h4>
+                            <ul>
+                                <li><a href="#overview">Overview</a></li>
+                                <li><a href="#first-boot">First Boot Checklist</a></li>
+                                <li><a href="#fixing-audio">Fixing Audio</a></li>
+                                <li><a href="#usb-mapping">USB Mapping</a></li>
+                                <li><a href="#sleep-wake">Sleep & Wake</a></li>
+                                <li><a href="#iservices">iServices</a></li>
+                                <li><a href="#updates">Handling Updates</a></li>
+                                <li><a href="#optimization">Performance Optimization</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-main">
+                        <div id="overview" class="content-section-inner">
+                            <h2>Post-Installation Overview</h2>
+                            <p>Congratulations on successfully installing macOS on your PC hardware! While your Hackintosh is now functional, there are several important steps to take to ensure optimal performance, stability, and functionality. This guide will walk you through essential post-installation tasks.</p>
+                            
+                            <div class="info-card" data-aos="fade-up">
+                                <div class="info-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Post-Installation Philosophy</h4>
+                                    <p>The goal of post-installation is to transform your basic macOS installation into a fully functional system that works reliably for daily use. Take your time with these steps—rushing can lead to stability issues later.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="first-boot" class="content-section-inner">
+                            <h2>First Boot Checklist</h2>
+                            <p>Before diving into specific fixes, complete this checklist to verify your system's basic functionality:</p>
+                            
+                            <div class="checklist" data-aos="fade-up">
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Verify System Information</h4>
+                                        <p>Check that your CPU, RAM, and storage are correctly recognized in About This Mac and System Information.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Test Internet Connectivity</h4>
+                                        <p>Ensure your Ethernet or WiFi connection works properly.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Check Graphics Acceleration</h4>
+                                        <p>Verify that UI animations are smooth and graphics acceleration is working.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Test USB Ports</h4>
+                                        <p>Check that your USB ports are functional (though some may need mapping).</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Check Audio Output</h4>
+                                        <p>Test if audio output works through speakers or headphones.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tip-card" data-aos="fade-up">
+                                <div class="tip-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="tip-content">
+                                    <h4>Pro Tip</h4>
+                                    <p>Take a backup of your working EFI folder before making any changes. This gives you a fallback point if something goes wrong during post-installation tweaking.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="fixing-audio" class="content-section-inner">
+                            <h2>Fixing Audio</h2>
+                            <p>Audio is one of the most common issues that needs addressing after installation. Most systems require AppleALC.kext and proper layout ID configuration.</p>
+                            
+                            <div class="tabbed-content" data-aos="fade-up">
+                                <div class="tab-buttons">
+                                    <button class="tab-button active" data-tab="applealc">AppleALC Method</button>
+                                    <button class="tab-button" data-tab="voodoohda">VoodooHDA Method</button>
+                                </div>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="applealc">
+                                        <h3>Using AppleALC (Recommended)</h3>
+                                        <p>AppleALC provides native audio support by patching the Apple audio driver to work with your hardware.</p>
+                                        
+                                        <ol>
+                                            <li>Download the latest <a href="https://github.com/acidanthera/AppleALC/releases" target="_blank">AppleALC.kext</a></li>
+                                            <li>Add it to EFI/OC/Kexts and update your config.plist</li>
+                                            <li>Find your audio codec by running:
+                                                <div class="code-block">
+                                                    <pre><code>kextstat | grep -E "AppleHDA|AppleALC"</code></pre>
+                                                    <button class="copy-button" aria-label="Copy code">
+                                                        <i class="fas fa-copy"></i>
+                                                    </button>
+                                                </div>
+                                            </li>
+                                            <li>Determine your <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">layout ID</a> based on your codec</li>
+                                            <li>Add the layout ID to your config.plist under DeviceProperties</li>
+                                        </ol>
+                                        
+                                        <div class="code-block">
+                                            <pre><code>DeviceProperties:
+  Add:
+    PciRoot(0x0)/Pci(0x1f,0x3):
+      layout-id: DATA | XX000000</code></pre>
+                                            <button class="copy-button" aria-label="Copy code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <p>Replace XX with your layout ID in hex.</p>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="voodoohda">
+                                        <h3>Using VoodooHDA (Alternative)</h3>
+                                        <p>VoodooHDA is an alternative solution when AppleALC doesn't work with your hardware.</p>
+                                        
+                                        <ol>
+                                            <li>Download the latest <a href="https://sourceforge.net/projects/voodoohda/" target="_blank">VoodooHDA</a></li>
+                                            <li>Install the package or add the kext to EFI/OC/Kexts</li>
+                                            <li>Update your config.plist to include the kext</li>
+                                            <li>Restart your system</li>
+                                        </ol>
+                                        
+                                        <div class="warning-card">
+                                            <div class="warning-icon">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </div>
+                                            <div class="warning-content">
+                                                <h4>VoodooHDA Limitations</h4>
+                                                <p>VoodooHDA generally provides lower audio quality and fewer features than AppleALC. Use it only if AppleALC doesn't work for your system.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="usb-mapping" class="content-section-inner">
+                            <h2>USB Mapping</h2>
+                            <p>Proper USB mapping is essential for reliable USB functionality, especially for USB 3.0 ports, Bluetooth, and sleep/wake functionality.</p>
+                            
+                            <div class="process-timeline" data-aos="fade-up">
+                                <div class="timeline-item">
+                                    <div class="timeline-number">1</div>
+                                    <div class="timeline-content">
+                                        <h4>Identify USB Ports</h4>
+                                        <p>Use tools like Hackintool to identify all your USB ports and their types</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-number">2</div>
+                                    <div class="timeline-content">
+                                        <h4>Create USB Map</h4>
+                                        <p>Generate a custom USB mapping kext for your specific hardware</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-number">3</div>
+                                    <div class="timeline-content">
+                                        <h4>Install USB Kext</h4>
+                                        <p>Add the mapping kext to your EFI and update config.plist</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-number">4</div>
+                                    <div class="timeline-content">
+                                        <h4>Remove USB Port Limit Patches</h4>
+                                        <p>Disable any USB port limit patches once mapping is complete</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="note-card" data-aos="fade-up">
+                                <div class="note-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="note-content">
+                                    <h4>USB Mapping Tools</h4>
+                                    <p>Several tools can help with USB mapping:</p>
+                                    <ul>
+                                        <li><a href="https://github.com/USBToolBox/tool" target="_blank">USBToolBox</a> - Cross-platform USB mapping tool</li>
+                                        <li><a href="https://github.com/corpnewt/USBMap" target="_blank">USBMap</a> - Python-based USB mapping script</li>
+                                        <li><a href

@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#f5f7fa"/>
+  
+  <!-- Outer Ring -->
+  <circle cx="100" cy="100" r="80" stroke="#0071e3" stroke-width="4" fill="none"/>
+  
+  <!-- Inner Hexagon -->
+  <path d="M100 40L150 70V130L100 160L50 130V70L100 40Z" stroke="#0071e3" stroke-width="4" fill="none"/>
+  
+  <!-- Center Element -->
+  <path d="M100 70L125 85V115L100 130L75 115V85L100 70Z" fill="#0071e3"/>
+  
+  <!-- Decorative Lines -->
+  <line x1="50" y1="70" x2="75" y2="85" stroke="#0071e3" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="150" y1="70" x2="125" y2="85" stroke="#0071e3" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="150" y1="130" x2="125" y2="115" stroke="#0071e3" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="50" y1="130" x2="75" y2="115" stroke="#0071e3" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="100" y1="40" x2="100" y2="70" stroke="#0071e3" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="100" y1="130" x2="100" y2="160" stroke="#0071e3" stroke-opacity="0.3" stroke-width="2"/>
+  
+  <!-- Subtle Glow Effect -->
+  <circle cx="100" cy="100" r="60" fill="url(#paint0_radial)" fill-opacity="0.4"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(100 100) rotate(90) scale(60)">
+      <stop stop-color="#0071e3"/>
+      <stop offset="1" stop-color="#0071e3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Modern Hackintosh Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 5L30 10V30L20 35L10 30V10L20 5Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20 15L25 17.5V25L20 27.5L15 25V17.5L20 15Z" fill="currentColor"/>
+                    </svg>
+                    <span>HackGuide</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="getting-started.html" class="active">Getting Started</a>
+                    <a href="hardware.html">Hardware</a>
+                    <a href="installation.html">Installation</a>
+                    <a href="post-install.html">Post-Install</a>
+                    <a href="troubleshooting.html">Troubleshooting</a>
+                </div>
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="animate-text">Getting <span class="gradient-text">Started</span></h1>
+                <p class="lead animate-text-delay">Everything you need to know before building your Hackintosh</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-sidebar">
+                        <div class="sidebar-nav">
+                            <h4>On This Page</h4>
+                            <ul>
+                                <li><a href="#introduction">Introduction</a></li>
+                                <li><a href="#what-is-hackintosh">What is a Hackintosh?</a></li>
+                                <li><a href="#is-it-legal">Is it Legal?</a></li>
+                                <li><a href="#prerequisites">Prerequisites</a></li>
+                                <li><a href="#terminology">Terminology</a></li>
+                                <li><a href="#next-steps">Next Steps</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-main">
+                        <div id="introduction" class="content-section-inner">
+                            <h2>Introduction</h2>
+                            <p>Welcome to our modern Hackintosh guide! This comprehensive resource will walk you through the process of installing macOS on non-Apple hardware. Whether you're a beginner or an experienced user, this guide provides all the information you need to build a stable and functional Hackintosh.</p>
+                            
+                            <div class="info-card" data-aos="fade-up">
+                                <div class="info-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Before You Begin</h4>
+                                    <p>Building a Hackintosh requires patience, research, and troubleshooting skills. This guide aims to make the process as smooth as possible, but be prepared to learn and solve problems along the way.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="what-is-hackintosh" class="content-section-inner">
+                            <h2>What is a Hackintosh?</h2>
+                            <p>A Hackintosh is a non-Apple computer that runs Apple's macOS operating system. The term combines "Hack" and "Macintosh," reflecting the nature of the setup. By carefully selecting compatible hardware and using specialized bootloaders like OpenCore, users can install and run macOS on standard PC components.</p>
+                            
+                            <div class="feature-comparison" data-aos="fade-up">
+                                <div class="comparison-item">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <h4>Advantages</h4>
+                                    </div>
+                                    <ul>
+                                        <li>Cost-effective alternative to Apple hardware</li>
+                                        <li>Customizable hardware specifications</li>
+                                        <li>Ability to upgrade individual components</li>
+                                        <li>Can dual-boot with other operating systems</li>
+                                        <li>Access to macOS ecosystem and applications</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="comparison-item">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-minus-circle"></i>
+                                        <h4>Challenges</h4>
+                                    </div>
+                                    <ul>
+                                        <li>Requires research for compatible hardware</li>
+                                        <li>May need troubleshooting after OS updates</li>
+                                        <li>Some features may require additional work</li>
+                                        <li>No official support from Apple</li>
+                                        <li>Potential stability issues with certain hardware</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="is-it-legal" class="content-section-inner">
+                            <h2>Is it Legal?</h2>
+                            <p>The legality of Hackintoshes exists in a gray area. Apple's End User License Agreement (EULA) for macOS states that the software should only be installed on Apple-branded hardware. However, building a Hackintosh for personal use and educational purposes is generally tolerated.</p>
+                            
+                            <div class="warning-card" data-aos="fade-up">
+                                <div class="warning-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="warning-content">
+                                    <h4>Important Legal Considerations</h4>
+                                    <p>While building a Hackintosh for personal use is common, using one in a commercial environment or selling Hackintoshes could potentially violate Apple's EULA and intellectual property rights. This guide is provided for educational purposes only.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="prerequisites" class="content-section-inner">
+                            <h2>Prerequisites</h2>
+                            <p>Before starting your Hackintosh journey, make sure you have the following:</p>
+                            
+                            <div class="checklist" data-aos="fade-up">
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Compatible Hardware</h4>
+                                        <p>Research and select components that are known to work well with macOS. Our <a href="hardware.html">Hardware Guide</a> can help you make informed choices.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Access to a Mac or Existing Hackintosh</h4>
+                                        <p>You'll need access to macOS to create the installation media. If you don't have a Mac, you can use a friend's Mac, a virtual machine, or a macOS recovery partition on an existing Hackintosh.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>USB Drive (16GB or larger)</h4>
+                                        <p>For creating the macOS installation media.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Patience and Willingness to Learn</h4>
+                                        <p>Building a Hackintosh is a learning process that requires patience and problem-solving skills.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="checklist-item">
+                                    <div class="checkbox">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="checklist-content">
+                                        <h4>Basic Knowledge of Computer Hardware</h4>
+                                        <p>Understanding components, BIOS/UEFI settings, and basic troubleshooting will be helpful.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="terminology" class="content-section-inner">
+                            <h2>Terminology</h2>
+                            <p>Familiarize yourself with these common terms used throughout the Hackintosh community:</p>
+                            
+                            <div class="terminology-grid" data-aos="fade-up">
+                                <div class="term-card">
+                                    <h4>OpenCore</h4>
+                                    <p>A modern, security-focused, feature-rich bootloader designed for Hackintosh systems. It's the recommended bootloader for this guide.</p>
+                                </div>
+                                
+                                <div class="term-card">
+                                    <h4>Kext</h4>
+                                    <p>Kernel Extension (similar to drivers in Windows). These files extend macOS functionality to work with non-Apple hardware.</p>
+                                </div>
+                                
+                                <div class="term-card">
+                                    <h4>ACPI</h4>
+                                    <p>Advanced Configuration and Power Interface. ACPI patches help macOS properly interact with your hardware's power management and other features.</p>
+                                </div>
+                                
+                                <div class="term-card">
+                                    <h4>SSDTs</h4>
+                                    <p>Secondary System Description Tables. These are ACPI tables that define hardware configurations for macOS.</p>
+                                </div>
+                                
+                                <div class="term-card">
+                                    <h4>EFI Partition</h4>
+                                    <p>A special partition on your drive where bootloaders like OpenCore are installed.</p>
+                                </div>
+                                
+                                <div class="term-card">
+                                    <h4>config.plist</h4>
+                                    <p>The main configuration file for OpenCore that contains all settings and parameters for your specific hardware.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="next-steps" class="content-section-inner">
+                            <h2>Next Steps</h2>
+                            <p>Now that you understand the basics, you're ready to move forward with your Hackintosh build. Here's what to do next:</p>
+                            
+                            <div class="next-steps-grid" data-aos="fade-up">
+                                <a href="hardware.html" class="next-step-card">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Hardware Selection</h4>
+                                        <p>Choose compatible components for your build</p>
+                                        <span class="step-link">Go to Hardware Guide <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </a>
+                                
+                                <a href="installation.html" class="next-step-card">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Installation Preparation</h4>
+                                        <p>Prepare your installation media and configure OpenCore</p>
+                                        <span class="step-link">Go to Installation Guide <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </a>
+                                
+                                <a href="post-install.html" class="next-step-card">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Post-Installation</h4>
+                                        <p>Fine-tune your system after successful installation</p>
+                                        <span class="step-link">Go to Post

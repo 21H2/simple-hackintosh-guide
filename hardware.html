@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware Compatibility - Modern Hackintosh Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 5L30 10V30L20 35L10 30V10L20 5Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20 15L25 17.5V25L20 27.5L15 25V17.5L20 15Z" fill="currentColor"/>
+                    </svg>
+                    <span>HackGuide</span>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="getting-started.html">Getting Started</a>
+                    <a href="hardware.html" class="active">Hardware</a>
+                    <a href="installation.html">Installation</a>
+                    <a href="post-install.html">Post-Install</a>
+                    <a href="troubleshooting.html">Troubleshooting</a>
+                </div>
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="animate-text">Hardware <span class="gradient-text">Compatibility</span></h1>
+                <p class="lead animate-text-delay">Choose the right components for your Hackintosh build</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-sidebar">
+                        <div class="sidebar-nav">
+                            <h4>On This Page</h4>
+                            <ul>
+                                <li><a href="#overview">Overview</a></li>
+                                <li><a href="#cpu">CPU Compatibility</a></li>
+                                <li><a href="#motherboard">Motherboards</a></li>
+                                <li><a href="#gpu">Graphics Cards</a></li>
+                                <li><a href="#storage">Storage</a></li>
+                                <li><a href="#networking">Networking</a></li>
+                                <li><a href="#recommended-builds">Recommended Builds</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="content-main">
+                        <div id="overview" class="content-section-inner">
+                            <h2>Hardware Overview</h2>
+                            <p>Choosing compatible hardware is the most critical step in building a successful Hackintosh. While macOS can run on a wide range of PC hardware, some components work better than others. This guide will help you select the best parts for a stable and functional system.</p>
+                            
+                            <div class="info-card" data-aos="fade-up">
+                                <div class="info-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Hardware Selection Tip</h4>
+                                    <p>When possible, choose hardware that's similar to what Apple uses in their Mac computers. This generally leads to better compatibility and fewer issues with macOS.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="cpu" class="content-section-inner">
+                            <h2>CPU Compatibility</h2>
+                            <p>The CPU is the heart of your Hackintosh and determines overall compatibility with different macOS versions.</p>
+                            
+                            <div class="hardware-tabs" data-aos="fade-up">
+                                <div class="tab-buttons">
+                                    <button class="tab-button active" data-tab="intel">Intel CPUs</button>
+                                    <button class="tab-button" data-tab="amd">AMD CPUs</button>
+                                </div>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="intel">
+                                        <h3>Intel CPU Compatibility</h3>
+                                        <p>Intel CPUs generally offer the best compatibility with macOS since Apple used Intel processors in their Macs from 2006 to 2020.</p>
+                                        
+                                        <div class="compatibility-table-wrapper">
+                                            <table class="compatibility-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Generation</th>
+                                                        <th>Series</th>
+                                                        <th>Compatibility</th>
+                                                        <th>Latest macOS</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>12th-13th Gen</td>
+                                                        <td>Alder Lake, Raptor Lake</td>
+                                                        <td><span class="badge badge-success">Excellent</span></td>
+                                                        <td>Sonoma (14)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10th-11th Gen</td>
+                                                        <td>Comet Lake, Rocket Lake</td>
+                                                        <td><span class="badge badge-success">Excellent</span></td>
+                                                        <td>Sonoma (14)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8th-9th Gen</td>
+                                                        <td>Coffee Lake, Coffee Lake Refresh</td>
+                                                        <td><span class="badge badge-success">Excellent</span></td>
+                                                        <td>Sonoma (14)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6th-7th Gen</td>
+                                                        <td>Skylake, Kaby Lake</td>
+                                                        <td><span class="badge badge-warning">Good</span></td>
+                                                        <td>Ventura (13)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4th-5th Gen</td>
+                                                        <td>Haswell, Broadwell</td>
+                                                        <td><span class="badge badge-warning">Good</span></td>
+                                                        <td>Big Sur (11)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="note-card">
+                                            <div class="note-icon">
+                                                <i class="fas fa-info-circle"></i>
+                                            </div>
+                                            <div class="note-content">
+                                                <h4>Intel CPU Notes</h4>
+                                                <ul>
+                                                    <li>Intel CPUs with integrated graphics (except F-series) provide hardware acceleration in macOS.</li>
+                                                    <li>For best results, use CPUs that have equivalents in real Macs.</li>
+                                                    <li>Newer Intel generations may require additional patches for full functionality.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane" id="amd">
+                                        <h3>AMD CPU Compatibility</h3>
+                                        <p>AMD CPUs can work well in a Hackintosh but require special kernel patches and have some limitations compared to Intel systems.</p>
+                                        
+                                        <div class="compatibility-table-wrapper">
+                                            <table class="compatibility-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Generation</th>
+                                                        <th>Series</th>
+                                                        <th>Compatibility</th>
+                                                        <th>Latest macOS</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Zen 4</td>
+                                                        <td>Ryzen 7000 series</td>
+                                                        <td><span class="badge badge-warning">Good</span></td>
+                                                        <td>Sonoma (14)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Zen 3</td>
+                                                        <td>Ryzen 5000 series</td>
+                                                        <td><span class="badge badge-success">Excellent</span></td>
+                                                        <td>Sonoma (14)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Zen 2</td>
+                                                        <td>Ryzen 3000 series</td>
+                                                        <td><span class="badge badge-success">Excellent</span></td>
+                                                        <td>Sonoma (14)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Zen/Zen+</td>
+                                                        <td>Ryzen 1000/2000 series</td>
+                                                        <td><span class="badge badge-warning">Good</span></td>
+                                                        <td>Sonoma (14)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="warning-card">
+                                            <div class="warning-icon">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </div>
+                                            <div class="warning-content">
+                                                <h4>AMD Limitations</h4>
+                                                <ul>
+                                                    <li>No support for Apple's Hypervisor framework (affects Docker, Android emulation, etc.)</li>
+                                                    <li>Some applications that rely on Intel-specific instructions may not work properly</li>
+                                                    <li>Requires special kernel patches that need updating with major macOS releases</li>
+                                                    <li>AMD integrated graphics (APUs) are not supported in macOS</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="motherboard" class="content-section-inner">
+                            <h2>Motherboards</h2>
+                            <p>The motherboard is crucial for a Hackintosh as it determines what features will work properly, including USB ports, audio, and networking.</p>
+                            
+                            <div class="hardware-grid" data-aos="fade-up">
+                                <div class="hardware-card">
+                                    <div class="hardware-icon">
+                                        <i class="fas fa-microchip"></i>
+                                    </div>
+                                    <h4>Recommended Chipsets (Intel)</h4>
+                                    <ul>
+                                        <li>Z690/Z790 (12th-13th Gen)</li>
+                                        <li>Z590/B560 (10th-11th Gen)</li>
+                                        <li>Z390/Z370 (8th-9th Gen)</li>
+                                        <li>Z270/Z170 (6th-7th Gen)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="hardware-card">
+                                    <div class="hardware-icon">
+                                        <i class="fas fa-microchip"></i>
+                                    </div>
+                                    <h4>Recommended Chipsets (AMD)</h4>
+                                    <ul>
+                                        <li>X670/B650 (Ryzen 7000)</li>
+                                        <li>X570/B550 (Ryzen 5000/3000)</li>
+                                        <li>X470/B450 (Ryzen 2000/1000)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="hardware-card">
+                                    <div class="hardware-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h4>Recommended Brands</h4>
+                                    <ul>
+                                        <li>Gigabyte</li>
+                                        <li>ASUS</li>
+                                        <li>MSI</li>
+                                        <li>ASRock</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="hardware-card">
+                                    <div class="hardware-icon">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <h4>Features to Avoid</h4>
+                                    <ul>
+                                        <li>Intel WiFi (requires replacement)</li>
+                                        <li>Killer Networking (problematic)</li>
+                                        <li>Some RGB controllers</li>
+                                        <li>Thunderbolt (requires extra work)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tip-card" data-aos="fade-up">
+                                <div class="tip-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="tip-content">
+                                    <h4>Motherboard Selection Tip</h4>
